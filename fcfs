@@ -2,9 +2,11 @@
 void main()
 {
 int p[10];
-int tat[10],wt[10],i,n,pt[10],bt[10]; float avg=0,tot=0;
+int tat[10],wt[10],i,n,pt[10],bt[10]; 
+float avg=0,tot=0;
 printf("enter no of processes:"); 
-scanf("%d",&n); for(i=0;i<n;i++)
+scanf("%d",&n); 
+for(i=0;i<n;i++)
 {
 printf("enter process %d number:\n",i+1); 
 scanf("%d",&p[i]);
