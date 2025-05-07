@@ -8,16 +8,16 @@ printf("enter no of processes:");
 scanf("%d",&n); 
 for(i=0;i<n;i++)
 {
-printf("enter process %d number:\n",i+1); 
-scanf("%d",&p[i]);
-printf("enter process time:\n"); 
-scanf("%d",&pt[i]);
+    printf("enter process %d number:\n",i+1); 
+    scanf("%d",&p[i]);
+    printf("enter process time:\n"); 
+    scanf("%d",&pt[i]);
 } 
 wt[0]=0;
 for(i=1;i<n;i++)
 {
-wt[i]=pt[i-1]+wt[i-1]; 
-tot=tot+wt[i];
+    wt[i]=pt[i-1]+wt[i-1]; 
+    tot=tot+wt[i];
 }
 avg=(float)tot/n; 
 for(i=0;i<n;i++) 
