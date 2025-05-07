@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <fcntl.h>
+void main()
+{
+    int ff1,ff2,c=1;
+    char*b;
+    ff1=open("f1.txt",O_RDONLY);
+    ff2=open("f2.txt",O_WRONLY);
+    if(ff1==-1 || ff2==-1)
+    {
+        printf("Error");
+    }
+    else
+    {
+        while(c>0)
+        {
+            c=read(ff1,&b,1);
+            write(ff2,&b,1);
+        }
+    }
+}
