@@ -1,0 +1,47 @@
+#include<stdio.h>
+struct sq
+{
+    char pro[10];
+    int bt,wt,tat;
+}p[10],temp;
+void main()
+{
+    int n,temp1=0;
+    float awt=0,atat=0;
+    printf("Enter no. of processes: ");
+    scanf("%d",&n);
+    printf("Enter name, and burst time of the processes: \n");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%s%d",p[i].pro,&p[i].bt);
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=i+1;j<n;j++)
+        {
+            if(p[i].bt>p[j].bt)
+            {
+                temp=p[i];
+                p[i]=p[j];
+                p[j]=temp;
+            }
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        p[i].wt=temp1;
+        p[i].tat=p[i].bt+p[i].wt;
+        temp1+=p[i].bt;
+        awt+=p[i].wt;
+        atat+=p[i].tat;
+    }
+    awt/=n;
+    atat/=n;
+    printf("\nProcess\tBT\tWT\tTAT\n");
+    for(int i=0;i<n;i++)
+    {
+        printf("%s\t%d\t%d\t%d\n",p[i].pro,p[i].bt,p[i].wt,p[i].tat);
+    }
+    printf("\nThe average waiting time = %f",awt);
+    printf("\nThe average turn around time = %f",atat);
+}
