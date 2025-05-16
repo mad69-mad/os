@@ -1,0 +1,22 @@
+#include<stdio.h>
+void main()
+{
+    int np,ps,pt[20],nf,la,pn,index,pa;
+    printf("Enter number of pages: ");
+    scanf("%d",&np);
+    printf("Enter size of page: ");
+    scanf("%d",&ps);
+    printf("Enter page table: \n");
+    for(int i=0;i<np;i++)
+    {
+        scanf("%d",&pt[i]);
+    }
+    printf("Enter number of frames: ");
+    scanf("%d",&nf);
+    printf("Enter logical address: ");
+    scanf("%d",&la);
+    pn=la/ps;
+    index=la%ps;
+    pa=(pt[pn]*ps)+index;
+    printf("Physical adress is %d",pa);
+}
