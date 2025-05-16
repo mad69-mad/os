@@ -1,0 +1,62 @@
+#include <stdio.h>
+int absolute(int a,int b)
+{
+    return (a-b<0)?b-a:a-b;
+}
+int bubble_sort(int arr[],int n)
+{
+    int temp;
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j=0;j<n-i-1;j++)
+        {
+            if(arr[j]>arr[j+1])
+            {
+                temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+            }
+        }
+    }
+}
+void main()
+{
+    int m,n,start,x,count=0,a[15],pos=0;
+    printf("Enter no. of cylinders: ");
+    scanf("%d",&m);
+    printf("Enter no. of requests: ");
+    scanf("%d",&n);
+    printf("Enter current head position: ");
+    scanf("%d",&start);
+    printf("Enter the requests: \n");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+        while(a[i]>=m || a[i]<0)
+        {
+            printf("Enter a valid request");
+            scanf("%d",&a[i]);
+        }
+    }
+    bubble_sort(a,n);
+    while(pos<n && a[pos]<start)
+        pos++;
+    x=start;
+    printf("C-LOOK Order: \n%d\t",x);
+    for(int i=pos;i<n;i++)
+    {
+        count+=absolute(x,a[i]);
+        x=a[i];
+        printf("%d\t",x);
+    }
+    count+=absolute(x,a[0]);
+    x=a[0];
+    printf("%d\t",x);
+    for(int i=1;i<pos;i++)
+    {
+        count+=absolute(x,a[i]);
+        x=a[i];
+        printf("%d\t",x);
+    }
+    printf("\nTotal head movements: %d cylinders",count);
+}
