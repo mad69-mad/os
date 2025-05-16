@@ -1,0 +1,47 @@
+#include<stdio.h>
+#define m 25
+void main()
+{
+    int frag[m],b[m],f[m],temp,nf,nb,lowest=10000;
+    int ff[m],bf[m];
+    printf("Memory Management Scheme - Best Fit\n");
+    printf("Enter no. of blocks: ");
+    scanf("%d",&nb);
+    printf("Enter no. of files: ");
+    scanf("%d",&nf);
+    printf("Enter size of blocks: ");
+    for(int i=1;i<=nb;i++)
+    {
+        printf("\nBlock %d:",i);
+        scanf("%d",&b[i]);
+    }
+    printf("Enter size of files: ");
+    for(int i=1;i<=nf;i++)
+    {
+        printf("\nFile %d:",i);
+        scanf("%d",&f[i]);
+    }
+    for(int i=1;i<=nf;i++)
+    {
+        for(int j=1;j<=nb;j++)
+        {
+            if(bf[j]!=1)
+            {
+                temp=b[j]-f[i];
+                if(temp>=0 && temp<lowest)
+                {
+                    ff[i]=j;
+                    lowest=temp;
+                }
+            }
+        }
+        frag[i]=lowest;
+        bf[ff[i]]=1;
+        lowest=10000;
+    }
+    printf("\nFile no.\tFile size\tBlock no.\tBlock size\tFragment");
+    for(int i=1;i<=nf;i++)
+    {
+        printf("\n%d\t\t%d\t\t%d\t\t%d\t\t%d",i,f[i],ff[i],b[ff[i]],frag[i]);
+    }
+}
