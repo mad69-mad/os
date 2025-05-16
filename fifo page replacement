@@ -1,0 +1,68 @@
+#include <stdio.h>
+void main()
+{
+
+    int frames[10],temp[10],pages[50];
+    int tp,tf,a,pf=0,k,l,pos;
+    printf("Enter total number of frames: ");
+    scanf("%d",&tf);
+    printf("Enter total number of pages: ");
+    scanf("%d",&tp);
+    printf("Enter values for refernce string: \n");
+    for(int i=0;i<tp;i++)
+    {
+        printf("Value No[%d]: ",i+1);
+        scanf("%d",&pages[i]);
+    }
+    for(int j=0;j<tf;j++)
+        frames[j]=-1;
+    for(int i=0;i<tp;i++)
+    {
+        a=0;
+        for(int j=0;j<tf;j++)
+        {
+            if(frames[j]==pages[i])
+            {
+                a=1;
+                break;
+            }
+        }
+        if(a==0)
+        {
+            for(int j=0;j<tf;j++)
+            {
+                if(frames[j]==-1)
+                {
+                    frames[j]=pages[i];
+                    a=1;
+                    pf++;
+                    break;
+                }
+            }
+        }
+        if(a==0)
+        {
+            for(int j=0;j<tf;j++)
+                temp[j]=0;
+            for(k=i-1,l=1;l<tf;k--,l++)
+            {
+                for(int j=0;j<tf;j++)
+                {
+                    if(frames[j]==pages[k])
+                        temp[j]=1;
+                }
+            }
+            for(int j=0;j<tf;j++)
+            {
+                if(temp[j]==0)
+                    pos=j;
+            }
+            frames[pos]=pages[i];
+            pf++;
+        }
+        for(int j=0;j<tf;j++)
+            printf("%d\t",frames[j]);
+        printf("\n");
+    }
+    printf("\nTotal number of page faults: %d",pf);
+}
